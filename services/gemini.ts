@@ -1,4 +1,3 @@
-
 import { GoogleGenAI, Type } from "@google/genai";
 import { Episode } from "../types.ts";
 
@@ -37,7 +36,7 @@ export const fetchYouTubeEpisodes = async (): Promise<Episode[]> => {
 
   try {
     const response = await ai.models.generateContent({
-      model: "gemini-3-pro-preview",
+      model: "gemini-3-flash-preview",
       contents: prompt,
       config: {
         tools: [{ googleSearch: {} }],
@@ -45,8 +44,21 @@ export const fetchYouTubeEpisodes = async (): Promise<Episode[]> => {
       },
     });
 
-    const jsonStr = response.text || "[]";
-    return JSON.parse(jsonStr);
+    let jsonStr = response.text || "[]";
+    
+    // Limpeza de possíveis blocos de markdown que a IA possa retornar
+    if (jsonStr.includes("```json")) {
+      jsonStr = jsonStr.split("```json")[1].split("```")[0].trim();
+    } else if (jsonStr.includes("```")) {
+      jsonStr = jsonStr.split("```")[1].split("```")[0].trim();
+    }
+
+    try {
+      return JSON.parse(jsonStr);
+    } catch (parseError) {
+      console.error("Erro ao converter JSON da IA:", parseError, jsonStr);
+      return [];
+    }
   } catch (error) {
     console.error("Erro ao buscar episódios do YouTube:", error);
     return [];
