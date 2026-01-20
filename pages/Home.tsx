@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Play, Mic, Star, ArrowRight, ShieldCheck } from 'lucide-react';
-import { EPISODES as MOCK_EPISODES, BLOG_POSTS, TESTIMONIALS } from '../constants';
-import { Episode } from '../types';
-import EpisodeCard from '../components/EpisodeCard';
-import PostCard from '../components/PostCard';
+import { EPISODES as MOCK_EPISODES, BLOG_POSTS, TESTIMONIALS } from '../constants.ts';
+import { Episode } from '../types.ts';
+import EpisodeCard from '../components/EpisodeCard.tsx';
+import PostCard from '../components/PostCard.tsx';
 
 const Home: React.FC = () => {
   const [episodes, setEpisodes] = useState<Episode[]>(MOCK_EPISODES);

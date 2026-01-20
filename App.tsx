@@ -1,19 +1,19 @@
 
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Episodes from './pages/Episodes';
-import Blog from './pages/Blog';
-import PostDetail from './pages/PostDetail';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import MediaKit from './pages/MediaKit';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfUse from './pages/TermsOfUse';
-import Sponsorship from './pages/Sponsorship';
-import EpisodeDetail from './pages/EpisodeDetail';
+import Header from './components/Header.tsx';
+import Footer from './components/Footer.tsx';
+import Home from './pages/Home.tsx';
+import Episodes from './pages/Episodes.tsx';
+import Blog from './pages/Blog.tsx';
+import PostDetail from './pages/PostDetail.tsx';
+import About from './pages/About.tsx';
+import Contact from './pages/Contact.tsx';
+import MediaKit from './pages/MediaKit.tsx';
+import PrivacyPolicy from './pages/PrivacyPolicy.tsx';
+import TermsOfUse from './pages/TermsOfUse.tsx';
+import Sponsorship from './pages/Sponsorship.tsx';
+import EpisodeDetail from './pages/EpisodeDetail.tsx';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();

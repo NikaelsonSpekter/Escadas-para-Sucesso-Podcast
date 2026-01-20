@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { BLOG_POSTS } from '../constants';
+import { BLOG_POSTS } from '../constants.ts';
 import { ArrowLeft, Clock, Calendar, Share2, BookOpen } from 'lucide-react';
 
 const PostDetail: React.FC = () => {

@@ -1,6 +1,6 @@
 
 import { GoogleGenAI, Type } from "@google/genai";
-import { Episode } from "../types";
+import { Episode } from "../types.ts";
 
 export const fetchYouTubeEpisodes = async (): Promise<Episode[]> => {
   const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });

@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { BLOG_POSTS } from '../constants';
-import PostCard from '../components/PostCard';
+import { BLOG_POSTS } from '../constants.ts';
+import PostCard from '../components/PostCard.tsx';
 import { Search } from 'lucide-react';
 
 const Blog: React.FC = () => {

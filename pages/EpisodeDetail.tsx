@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { User, Share2, ArrowLeft, Play, Youtube } from 'lucide-react';
-import { EPISODES as MOCK_EPISODES } from '../constants';
-import { Episode } from '../types';
-import EpisodeCard from '../components/EpisodeCard';
+import { EPISODES as MOCK_EPISODES } from '../constants.ts';
+import { Episode } from '../types.ts';
+import EpisodeCard from '../components/EpisodeCard.tsx';
 
 const EpisodeDetail: React.FC = () => {
   const { slug } = useParams();
@@ -16,16 +16,20 @@ const EpisodeDetail: React.FC = () => {
     let source = [...MOCK_EPISODES];
     
     if (saved) {
-      const parsedSaved: Episode[] = JSON.parse(saved);
-      parsedSaved.forEach(savedEp => {
-        const isAlreadyInMock = MOCK_EPISODES.find(m => m.id === savedEp.id);
-        if (!isAlreadyInMock) {
-          source.push(savedEp);
-        } else {
-          const index = source.findIndex(s => s.id === savedEp.id);
-          if (index !== -1) source[index] = MOCK_EPISODES.find(m => m.id === savedEp.id)!;
-        }
-      });
+      try {
+        const parsedSaved: Episode[] = JSON.parse(saved);
+        parsedSaved.forEach(savedEp => {
+          const isAlreadyInMock = MOCK_EPISODES.find(m => m.id === savedEp.id);
+          if (!isAlreadyInMock) {
+            source.push(savedEp);
+          } else {
+            const index = source.findIndex(s => s.id === savedEp.id);
+            if (index !== -1) source[index] = MOCK_EPISODES.find(m => m.id === savedEp.id)!;
+          }
+        });
+      } catch (e) {
+        console.error("Error parsing saved episodes", e);
+      }
     }
     
     setAllEpisodes(source);
@@ -51,7 +55,7 @@ const EpisodeDetail: React.FC = () => {
               <iframe 
                 width="100%" 
                 height="100%" 
-                src={episode.youtubeUrl} 
+                src={episode.youtubeUrl.replace('watch?v=', 'embed/')} 
                 title="YouTube video player"
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -113,10 +117,6 @@ const EpisodeDetail: React.FC = () => {
                     <Youtube size={18} /> YouTube Oficial
                   </span>
                   <Play size={16} className="text-brand-blue opacity-100 transition-opacity" />
-                </a>
-                <a href="#" className="w-full flex items-center justify-between p-4 bg-white rounded-xl border border-brand-border hover:border-brand-blue transition-all group opacity-60">
-                  <span className="font-bold text-sm">YouTube Music</span>
-                  <Play size={16} className="text-brand-blue opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               </div>
             </div>

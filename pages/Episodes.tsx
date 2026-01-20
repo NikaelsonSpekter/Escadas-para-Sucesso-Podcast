@@ -1,10 +1,10 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { Search, RefreshCw, Youtube } from 'lucide-react';
-import { EPISODES as MOCK_EPISODES } from '../constants';
-import { fetchYouTubeEpisodes } from '../services/gemini';
-import { Episode } from '../types';
-import EpisodeCard from '../components/EpisodeCard';
+import { EPISODES as MOCK_EPISODES } from '../constants.ts';
+import { fetchYouTubeEpisodes } from '../services/gemini.ts';
+import { Episode } from '../types.ts';
+import EpisodeCard from '../components/EpisodeCard.tsx';
 
 const CATEGORIES = ['Tudo', 'Engenharia', 'Negócios', 'Gestão', 'Obras', 'Materiais', 'Carreira'];
 

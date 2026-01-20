@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Play } from 'lucide-react';
-import { EPISODES } from '../constants';
+import { EPISODES } from '../constants.ts';
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +19,6 @@ const Header: React.FC = () => {
 
   const isActive = (path: string) => location.pathname === path;
   const latestEpisodeUrl = EPISODES[0]?.youtubeUrl || 'https://www.youtube.com/@escadasparaosucessopodcast';
-  const whatsappSugerirUrl = "https://wa.me/5511988284715?text=Olá,%20gostaria%20de%20sugerir%20um%20convidado%20para%20o%20podcast%20Escadas%20para%20o%20Sucesso.";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-brand-border h-20 flex items-center">
