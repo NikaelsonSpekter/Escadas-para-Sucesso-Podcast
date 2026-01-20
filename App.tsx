@@ -13,8 +13,8 @@ import MediaKit from './pages/MediaKit';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfUse from './pages/TermsOfUse';
 import Sponsorship from './pages/Sponsorship';
+import EpisodeDetail from './pages/EpisodeDetail';
 
-// Scroll to top on route change
 const ScrollToTop = () => {
   const { pathname } = useLocation();
   useEffect(() => {
@@ -33,6 +33,7 @@ const App: React.FC = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/episodios" element={<Episodes />} />
+            <Route path="/episodios/:slug" element={<EpisodeDetail />} />
             <Route path="/blog" element={<Blog />} />
             <Route path="/blog/:slug" element={<PostDetail />} />
             <Route path="/sobre" element={<About />} />

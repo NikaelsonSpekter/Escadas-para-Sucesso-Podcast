@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Play, Mic, Star, ArrowRight, ShieldCheck, Mail } from 'lucide-react';
+import { Play, Mic, Star, ArrowRight, ShieldCheck } from 'lucide-react';
 import { EPISODES as MOCK_EPISODES, BLOG_POSTS, TESTIMONIALS } from '../constants';
 import { Episode } from '../types';
 import EpisodeCard from '../components/EpisodeCard';
@@ -13,14 +13,18 @@ const Home: React.FC = () => {
   useEffect(() => {
     const saved = localStorage.getItem('pod_episodes');
     if (saved) {
-      const parsedSaved: Episode[] = JSON.parse(saved);
-      const merged = [...MOCK_EPISODES];
-      parsedSaved.forEach(savedEp => {
-        if (!merged.find(m => m.id === savedEp.id)) {
-          merged.push(savedEp);
-        }
-      });
-      setEpisodes(merged);
+      try {
+        const parsedSaved: Episode[] = JSON.parse(saved);
+        const merged = [...MOCK_EPISODES];
+        parsedSaved.forEach(savedEp => {
+          if (!merged.find(m => m.id === savedEp.id)) {
+            merged.push(savedEp);
+          }
+        });
+        setEpisodes(merged);
+      } catch (e) {
+        console.error("Error parsing saved episodes", e);
+      }
     }
   }, []);
 
